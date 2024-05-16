@@ -1,8 +1,6 @@
-#
-WEB STACK IMPLEMENTATION (LEMP STACK)- 104
+# WEB STACK IMPLEMENTATION (LEMP STACK)- 104
 
-#
-Step 3 – Installing PHP
+## Step 3 – Installing PHP
 
 we need PHP to process code and generate dynamic content for the web server.
 

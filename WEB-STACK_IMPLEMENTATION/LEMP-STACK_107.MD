@@ -1,8 +1,6 @@
-#
-WEB STACK IMPLEMENTATION (LEMP STACK)- 107
+# WEB STACK IMPLEMENTATION (LEMP STACK)- 107
 
-##
-Step 6 — Retrieving data from MySQL database with PHP
+## Step 6 — Retrieving data from MySQL database with PHP
 
 In this step you will create a test database (DB) with simple "To do list" and configure access to it, so the Nginx website would be able to query data from the DB and display it.
 
