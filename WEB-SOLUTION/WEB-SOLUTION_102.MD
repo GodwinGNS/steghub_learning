@@ -312,3 +312,6 @@ Do the follow to get your wordpress started:
 ![alt text](PHOTO/WORDP5.png)
 
 ![alt text](PHOTO/WORDP6.png)
+
+
+#### In this course, we have successfully created our instances, mount our volume to it, partitioned it and have also configured our apache, php and mysql in the respective instance following our above steps. wordpress has as well been successfully sarted with a user name created. 
