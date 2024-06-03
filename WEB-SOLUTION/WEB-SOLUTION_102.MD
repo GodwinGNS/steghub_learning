@@ -309,6 +309,8 @@ Do the follow to get your wordpress started:
 
 ![alt text](PHOTO/WORDP1.png)
 
+![alt text](PHOTO/WORDP3.png)
+
 ![alt text](PHOTO/WORDP5.png)
 
 ![alt text](PHOTO/WORDP6.png)
