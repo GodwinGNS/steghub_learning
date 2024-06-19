@@ -160,7 +160,7 @@ sudo exportfs -arv
 ![alt text](IMAGES/13.png)
  
  * Check which port is used by NFS and open it using Security Groups (add new Inbound Rule)
-```sudo apt 
+```
 rpcinfo -p | grep nfs
 ```
 ![alt text](IMAGES/10.png)
@@ -262,8 +262,9 @@ sudo mkdir /var/log/httpd
 ```
 ![alt text](IMAGES/19.png)
 * Mount /var/log/httpd and target the NFS server export for logs
+  Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step 4 to make sure the mount point will persist after reboot.
 ```
-
+sudo mount -t nfs -o rw,nosuid 172.31.43.80:/mnt/logs /var/log/httpd
 ```
 * To make the changes persist aftr reboot run:
 ```
@@ -305,6 +306,9 @@ Fork the tooling website code from my github repository https://github.com/StegT
    configure db credentials to connect to the mysql server in functions.php page and import tooling-db.sql file into the database
 
    ```
+      # configure my functions.php
+      sudo vi /var/www/html/functions.php
+
        mysql -h 172.31.39.146 -u webserver -p <tooling-db.sql
 
         sudo mysql -h 172.31.19.87 -u webaccess -p -D tooling < tooling-db.sql
@@ -337,7 +341,11 @@ Allow apache to make outside connection requests
 ```
       Sudo setsebool -P httpd_can_network_connect=1
 ```
-Restart apache again
+
+Or
+Disable SELinux by running sudo setenforce 0
+To make this change permanent, open following config file sudo vi /etc/sysconfig/selinux and set SELINUX=disabled then restart httpd.
+
 
 vist both webservers ipaddress/index.php on different web broswer tabs
 
