@@ -152,9 +152,9 @@ We will update this playbook with following task;
 * Change timezone on all servers!
 * Run some shell script
 
-[alt text](IMAGES/11.png)
+![alt text](IMAGES/11.png)
 
-[alt text](IMAGES/12.png)
+![alt text](IMAGES/12.png)
 
 ## Step 5 - Update GIT with the latest code
 
