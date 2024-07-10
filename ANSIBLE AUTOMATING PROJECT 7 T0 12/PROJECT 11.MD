@@ -66,10 +66,28 @@ git clone <ansible-config-mgt repo link>
 
 1. In ansible-config-config-mgt GitHub repository, create a new branch that will be used for development of a new feature
 2. Checkout the newly created feature branch to your local machine and start building your code and directory structure
+```
+git checkout
+git branch <new_branch>
+git checkout <new_branch>
+```
+
 3. Create a directory and name it playbooks - it will be used to store all your playbook files.
-4. Create a directory and name it inventory - it will be used to keep your hosts organised.
-5. Within the playbooks folder, create your first playbook, and name it common.yml
-6. Within the inventory folder, create an inventory file () for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively. These inventory files
+  * ansible-config-config-mgt, create a playbook and inventory directory
+  ```
+  mkdir playbook inventory
+  ```
+The inventory -  will be used to keep your hosts organised.
+
+4. Within the playbooks folder, create your first playbook, and name it common.yml
+```
+touch common.yml
+```
+
+5. Within the inventory folder, create an inventory file () for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively. These inventory files
+```
+touch dev.yml staging.yml uat.yml prod.yml
+```
    
 ![alt text](IMAGES/9.png)
 
@@ -139,3 +157,102 @@ We will update this playbook with following task;
 [alt text](IMAGES/12.png)
 
 ## Step 5 - Update GIT with the latest code
+
+
+In the real world, you will be working within a team of other DevOps engineers and developers. It is important to learn how to collaborate with help of GIT. In many organisations there is a development rule that do not allow to deploy any code before it has been reviewed by an extra pair of eyes - it is also called "Four eyes principle".
+
+Now you have a separate branch, you will need to know how to raise a Pull Request (PR), get your branch peer reviewed and merged to the master branch.
+
+Commit your code into GitHub:
+
+```
+git status
+
+git add <selected files>
+
+git commit -m "commit message"
+
+git push origin release
+```
+![alt text](IMAGES/13.png)
+
+![alt text](IMAGES/14.png)
+
+* Create a Pull Request (PR)
+
+![alt text](IMAGES/15.png)
+
+Wear the hat of another developer for a second, and act as a reviewer.
+
+![alt text](IMAGES/16.png)
+If the reviewer is happy with your new feature development, merge the code to the master branch.
+
+![alt text](IMAGES/17.png)
+
+Head back on your terminal, checkout from the feature branch into the master, and pull down the latest changes
+```
+#checkout from release branch to main
+
+git checkout main
+git pull origin main
+```
+![alt text](IMAGES/18.png)
+
+
+## Step 7 - Run the first Ansible test
+
+Now, it is time to execute ansible-playbook command and verify if your playbook actually works:
+
+* In VS code run
+```
+  cd /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/
+```
+  * Replace the path of ansible with anisble-config-mgt and build_number with your current jenkins build number.
+  
+  ![alt text](IMAGES/20.png)
+  * Now run your playbook using the command:
+```
+ansible-playbook -i inventory/dev.yml playbooks/common.yml
+```
+![alt text](IMAGES/21.png)
+
+![alt text](IMAGES/22.png)
+
+## Step 8 - Set up an ssh agent
+
+* Ansible uses TCP port 22 by default, which means it needs to ssh into target servers from Jenkins-Ansible host - for this you can implement the concept of ssh-agent. Now you need to import your key into ssh-agent:
+
+```
+eval `ssh-agent -s`
+ssh-add <path-to-private-key>
+```
+* Confirm the key has been added with the command below, you should see the name of your key
+```
+ssh-add -l 
+```
+* Now, ssh into your Jenkins-Ansible server using ssh-agent
+```
+ssh -A ubuntu@public-ip
+```
+![alt text](IMAGES/19.png)
+
+You can go to each of the servers and check if wireshark has been installed by running which wireshark or wireshark --version
+
+For DB server
+![alt text](IMAGES/db.png)
+
+For LB server
+![alt text](<IMAGES/on lb.png>)
+
+For NFS server
+![alt text](IMAGES/nfs.png)
+
+For WEB1 server
+![alt text](IMAGES/web1.png)
+
+For WEB2 server
+![alt text](IMAGES/web2.png)
+
+The updated with Ansible now look like this.
+
+![alt text](IMAGES/image-48-768x776.png)
