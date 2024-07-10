@@ -190,6 +190,10 @@ rpcinfo -p | grep nfs
   ```
 * Edit the MySQL configuration file to bind it to all IP addresses, (0.0.0.0) Open the MySQL configuration file, which is located at /etc/mysql/mysql.conf.d/mysqld.cnf:
 * in your ec2 security groud eidit the inbound rules and add the port 3306 (default mysql port) and allow access from your subnet cidr
+* restart mysqld
+  ```
+  sudo systemctl restart mysqld
+  ```
 
 ## Step 3 — Prepare the Web Servers
 
@@ -264,7 +268,7 @@ sudo mkdir /var/log/httpd
 * Mount /var/log/httpd and target the NFS server export for logs
   Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step 4 to make sure the mount point will persist after reboot.
 ```
-sudo mount -t nfs -o rw,nosuid 172.31.43.80:/mnt/logs /var/log/httpd
+sudo mount -t nfs -o rw,nosuid <nfs-server-private-ip>:/mnt/logs /var/log/httpd
 ```
 * To make the changes persist aftr reboot run:
 ```
@@ -272,7 +276,7 @@ sudo vi /etc/fstab
 
 #add the following 
 
- <nfs-server-ippv4-address>:/mnt/logs  /var/log/httpd nfs defaults 0 0
+ <nfs-server-private-ip-address>:/mnt/logs  /var/log/httpd nfs defaults 0 0
 
  #save and exit
 ```
@@ -285,7 +289,7 @@ You can try to create a new file touch test.txt from one server and check if the
 ```
 sudo yum install - mysql
 
-sudo mysql -u weaccess -p -h (mysql server ip address);
+sudo mysql -u webaccess -p -h (mysql server ip address);
 
 show databases;
 ```

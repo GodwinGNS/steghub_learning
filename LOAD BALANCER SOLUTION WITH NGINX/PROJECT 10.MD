@@ -41,7 +41,7 @@ sudo apt install nginx
 ![alt text](IMAGE/1.png)
 
 * Configure Nginx LB using Web Servers' names defined in /etc/hosts
-* Read this [blog](https://linuxize.com/post/how-to-edit-your-hosts-file/) to understand more about etc/host
+* Read this [blog](https://linuxize.com/post/how-to-edit-your-hosts-file/) to understand more about etc/ho st
 
 ```
 sudo vi /etc/nginx/nginx.conf
