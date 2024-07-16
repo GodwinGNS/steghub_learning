@@ -16,7 +16,7 @@ This project going to take 3 steps to complete.
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk
+sudo apt install fontconfig openjdk-17-jre
 ```
 
 * Install Jenkins
